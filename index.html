@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist Savings Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🎯</div>
+        <div>
+          <h1>Wishlist Savings Tracker</h1>
+          <p class="subtitle">Track goals, save smarter, celebrate wins.</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="toggle-group" role="group" aria-label="Preferences">
+          <button id="currencyToggle" class="chip" type="button" aria-label="Toggle currency">
+            ₹
+            <span class="chip-muted">/ $</span>
+          </button>
+          <button id="themeToggle" class="chip" type="button" aria-label="Toggle dark mode">
+            🌙
+            <span class="chip-muted">Dark</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Summary -->
+      <section class="summary" aria-label="Dashboard summary">
+        <div class="summary-card">
+          <div class="summary-label">Total Goals</div>
+          <div id="sumGoals" class="summary-value">0</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Total Required</div>
+          <div id="sumRequired" class="summary-value">₹0</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Total Saved</div>
+          <div id="sumSaved" class="summary-value">₹0</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Total Remaining</div>
+          <div id="sumRemaining" class="summary-value">₹0</div>
+        </div>
+      </section>
+
+      <!-- Add Goal -->
+      <section class="panel" aria-label="Add a new wishlist goal">
+        <div class="panel-head">
+          <h2>Add a Goal</h2>
+          <p class="muted">Add an item, set the target, and start saving.</p>
+        </div>
+
+        <form id="addGoalForm" class="form">
+          <div class="form-row">
+            <label>
+              Goal name <span class="req">*</span>
+              <input id="goalName" type="text" maxlength="60" placeholder="e.g., MacBook Air" required />
+            </label>
+
+            <label>
+              Target amount <span class="req">*</span>
+              <input
+                id="goalTarget"
+                type="number"
+                inputmode="decimal"
+                min="1"
+                step="0.01"
+                placeholder="e.g., 99999"
+                required
+              />
+            </label>
+          </div>
+
+          <label>
+            Description (optional)
+            <textarea id="goalDesc" rows="2" maxlength="160" placeholder="Why this matters…"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">+ Add to Wishlist</button>
+            <button id="resetAllBtn" class="btn ghost" type="button" title="Clears all data">Reset All</button>
+          </div>
+
+          <div id="formError" class="form-error" role="alert" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <!-- Goals Grid -->
+      <section class="grid-wrap" aria-label="Goals dashboard">
+        <div class="grid-head">
+          <h2>Your Wishlist</h2>
+          <p class="muted">All goals are saved in your browser (localStorage).</p>
+        </div>
+
+        <div id="goalsGrid" class="grid" aria-live="polite"></div>
+
+        <div id="emptyState" class="empty">
+          <div class="empty-emoji" aria-hidden="true">🧾</div>
+          <h3>No goals yet</h3>
+          <p>Add your first goal above to start tracking savings.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="muted">Frontend-only • LocalStorage persistence • Vanilla JS</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
